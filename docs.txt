@@ -1,0 +1,11 @@
+admin@example.com (Admin)
+123456
+
+john@example.com (Customer)
+123456
+
+jane@example.com (Customer)
+123456
+
+
+  "type": "module",:use first line in package.json, to import packages in nodejs.
