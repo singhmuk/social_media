@@ -8,4 +8,4 @@ jane@example.com (Customer)
 123456
 
 
-  "type": "module",:use first line in package.json, to import packages in nodejs.
+#"type": "module",:use first line in package.json, to import packages in nodejs.
