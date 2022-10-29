@@ -1,19 +1,23 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
-import Header from './components/Header'
 import HomeScreen from './components/HomeScreen'
-import LoginScreen from './components/LoginScreen'
-import RegisterScreen from './components/RegisterScreen'
+import Counts from './components/counts'
+import Distincts from './components/distincts'
+import Projections from './components/projections'
+import Aggregations from './components/aggregations'
+import IndexCount from './components/indexCount'
 const App = () => {
   return (
     <Router>
-      <Header />
       <main className='py-3'>
         <Container>
-          <Route path='/login' component={LoginScreen} />
-          <Route path='/register' component={RegisterScreen} />
-          <Route path='/' component={HomeScreen} exact />
+          <Route exact path='/' component={HomeScreen} />
+          <Route path='/counts' component={Counts} />
+          <Route path='/distincts' component={Distincts} />
+          <Route path='/projections' component={Projections} />
+          <Route path='/aggregations' component={Aggregations} />
+          <Route path='/indexCount' component={IndexCount} />
         </Container>
       </main>
     </Router>
