@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const generateToken = require('../middleware/generateToken.js');
-const userSchema = require('../models/userModel.js');
+const userSchema = require('../models/users.js');
 
 
 router.login = async(req,res) => {
