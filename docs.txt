@@ -1,11 +1,4 @@
-admin@example.com (Admin)
-123456
-
-john@example.com (Customer)
-123456
-
-jane@example.com (Customer)
-123456
-
-
-  "type": "module",:use first line in package.json, to import packages in nodejs.
+PUT: localhost:5000/api/class/617c7fceb6686c30308e8a43(class id)
+{
+  "studentsId":"617c3e3d2a240a0a31b6e563"(student id)
+}
