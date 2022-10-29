@@ -1,11 +1,29 @@
-admin@example.com (Admin)
-123456
+Follow(PUT): localhost:5000/api/user/635b7a638a81cea560ab6a5d/follow
+    { "userId":"635b7870e68838566174db0a" }
 
-john@example.com (Customer)
-123456
-
-jane@example.com (Customer)
-123456
+Unfollow(PUT): localhost:5000/api/user/635b7a638a81cea560ab6a5d/unfollow
+    { "userId":"635b7870e68838566174db0a" }
 
 
-  "type": "module",:use first line in package.json, to import packages in nodejs.
+-------------------------------------//Post//------------------------------------
+User Post(POST): localhost:5000/api/posts
+{
+    "userId":"635b7870e68838566174db0a",
+    "desc":"Admin likes post",
+    "likes":[1]
+} 
+
+PUT: localhost:5000/api/posts/635b800fc3404a05c8bbcca5
+{
+    "userId":"635b7870e68838566174db0a",
+    "desc":"the post has been updated"
+}
+
+
+Like/Dislike(PUT): localhost:5000/api/posts/635b90c3c3404a05c8bbcca8/like
+{
+    "userId":"635b7870e68838566174db0a"
+}
+
+
+Timeline(GET): localhost:5000/api/posts/timeline/all

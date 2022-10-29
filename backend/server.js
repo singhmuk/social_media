@@ -4,7 +4,8 @@ const app = express();
 const morgan = require('morgan');
 const dbConn = require('./config/db.js');
 
-const userRoutes = require('./routes/userRoutes.js');
+const userRoutes = require('./routes/userRoutes');
+const followRoutes = require('./routes/follow');
 
 
 dbConn();
@@ -15,7 +16,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use('/api/users', userRoutes)
+app.use('/api/follows', followRoutes)
 
 
 const port = process.env.PORT || 5000;
-app.listen(port, () =>  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${port}.`))
+app.listen(port, () =>  console.log(`Server running in mode on port ${port}.`))
