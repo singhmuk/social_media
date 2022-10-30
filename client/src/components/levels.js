@@ -3,14 +3,14 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 
 
-const Projections =() => {
-    const [users, setUsers] = useState([]);
+const Levels =() => {
+    const [orcon, setOrcon] = useState([]);
   
     useEffect(() => {
-        axios('api/aggregations/proj')
+        axios('api/conditions/level')
           .then(res => {
-            console.log('proj',res.data)
-            setUsers(res.data);
+            console.log('orCon',res.data)
+            setOrcon(res.data);
           })
           .catch(error => {
             console.log(error);
@@ -20,12 +20,12 @@ const Projections =() => {
     return(
       <div>
         <Link to='/'><button>Home</button></Link>
-        {users.map(vals=>(
-          <li key={vals._id}>{vals.id}</li>
+        {orcon.map(vals=>(
+          <li key={vals._id}>{vals.qty}</li>
         ))}
       </div>
     )
   }
   
 
-  export default Projections;
+  export default Levels;

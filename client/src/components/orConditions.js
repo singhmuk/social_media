@@ -1,15 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 
-const Disticts =() => {
-    const [distict, setDistict] = useState([]);
+const Or =() => {
+    const [or, setOr] = useState([]);
   
     useEffect(() => {
-        axios('api/aggregations/distincts')
+        axios('api/conditions/or')
           .then(res => {
-            setDistict(res.data);
+            console.log('or',res.data)
+            setOr(res.data);
           })
           .catch(error => {
             console.log(error);
@@ -19,12 +20,12 @@ const Disticts =() => {
     return(
       <div>
         <Link to='/'><button>Home</button></Link>
-        {distict.map(vals=>(
-          <li key={vals._id}>{vals}</li>
+        {or.map(vals=>(
+          <li key={vals._id}>{vals._id}</li>
         ))}
       </div>
     )
   }
   
 
-  export default Disticts;
+  export default Or;

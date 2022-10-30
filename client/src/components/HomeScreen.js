@@ -11,11 +11,11 @@ const HomeScreen = () => {
       <h1>Home Page</h1>
       <div className="w3-show-inline-block">
         <div className="w3-bar">
-          <Link to='/counts'><button>Counts</button></Link>
-          <Link to='/distincts'><button>Distincts</button></Link>
-          <Link to='/projections'><button>Projections</button></Link>
-          <Link to='/aggregations'><button>Aggregations</button></Link>
-          <Link to='/indexCount'><button>IndexCount</button></Link>
+        <Link to='/orConditions'><button>or</button></Link>
+          <Link to='/orCon'><button>orCon</button></Link>
+          <Link to='/andConditions'><button>and</button></Link>
+          <Link to='/orAnd'><button>orAnd</button></Link>
+          <Link to='/levels'><button>Levels</button></Link>
         </div>
       </div>
     </div>

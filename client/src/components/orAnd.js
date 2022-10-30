@@ -3,14 +3,14 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 
 
-const IndexCount =() => {
-    const [users, setUsers] = useState([]);
+const Counts =() => {
+    const [orAnd, setOrand] = useState([]);
   
     useEffect(() => {
-        axios('api/aggregations/index')
+        axios('api/conditions/orAnd')
           .then(res => {
-            console.log('index',res.data)
-            setUsers(res.data);
+            console.log('setOrand',res.data);
+            setOrand(res.data);
           })
           .catch(error => {
             console.log(error);
@@ -20,12 +20,12 @@ const IndexCount =() => {
     return(
       <div>
         <Link to='/'><button>Home</button></Link>
-        {users.map(vals=>(
-          <li key={vals.id}>{vals.id}</li>
+        {orAnd.map(vals=>(
+          <li key={vals._id}>{vals.title}</li>
         ))}
       </div>
     )
   }
   
 
-  export default IndexCount;
+  export default Counts;

@@ -3,13 +3,14 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 
 
-const Counts =() => {
-    const [counts, setCounts] = useState([]);
+const And =() => {
+    const [and, setAnd] = useState([]);
   
     useEffect(() => {
-        axios('api/aggregations')
+        axios('api/conditions/and')
           .then(res => {
-            setCounts(res.data);
+            console.log('res', res.data);
+            setAnd(res.data);
           })
           .catch(error => {
             console.log(error);
@@ -19,12 +20,12 @@ const Counts =() => {
     return(
       <div>
         <Link to='/'><button>Home</button></Link>
-        {counts.map(vals=>(
-          <li key={vals._id}>{vals.title}</li>
-        ))}
+        {/* {and.map(vals=>(
+          <li key={vals._id}>{vals}</li>
+        ))} */}
       </div>
     )
   }
   
 
-  export default Counts;
+  export default And;
