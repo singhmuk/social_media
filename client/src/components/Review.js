@@ -39,7 +39,7 @@ export class Review extends Component {
                     <tbody>
                     {this.state.restaurant.reviews.map( review =>  {
                     return (
-                        <tr key={review._id} className="review">
+                        <tr key={review._id}>
                             <td>{review.customerName}</td>
                             <td>{review.rating}</td>
                             <td>{review.reviewDescription}</td>
