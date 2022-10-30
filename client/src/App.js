@@ -1,27 +1,47 @@
-import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Container } from 'react-bootstrap'
-import HomeScreen from './components/HomeScreen'
-import Counts from './components/counts'
-import Distincts from './components/distincts'
-import Projections from './components/projections'
-import Aggregations from './components/aggregations'
-import IndexCount from './components/indexCount'
+import React, {useState, useEffect} from 'react';
+import axios from "axios";
+
+
 const App = () => {
+  const [count, setCounts] = useState([]);
+  const [isClick, setIsclick] = useState(false);
+
+  useEffect(() => {
+    onIncre();
+}, []);
+
+const handleClick = () => {
+  setIsclick(!isClick);
+  console.log('isClick',isClick)
+}
+
+const onIncre = () => {
+  if(isClick){
+    axios('/api/increase')
+    .then(res => {
+        setCounts([res.data.counts]);
+    })
+    .catch(error => {
+        console.log(error);
+    })
+  }else{
+    axios('/api/increase/decre')
+    .then(res => {
+        setCounts([res.data.counts]);
+    })
+    .catch(error => {
+        console.log(error);
+    })
+  }
+}
+
   return (
-    <Router>
-      <main className='py-3'>
-        <Container>
-          <Route exact path='/' component={HomeScreen} />
-          <Route path='/counts' component={Counts} />
-          <Route path='/distincts' component={Distincts} />
-          <Route path='/projections' component={Projections} />
-          <Route path='/aggregations' component={Aggregations} />
-          <Route path='/indexCount' component={IndexCount} />
-        </Container>
-      </main>
-    </Router>
+    <div>
+      {count}<br/>
+      <button onClick={onIncre}>counts</button>
+      <button onClick={handleClick}>isCheck</button>
+    </div>
   )
 }
 
-export default App
+export default App;
