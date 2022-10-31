@@ -1,27 +1,83 @@
-import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Container } from 'react-bootstrap'
-import HomeScreen from './components/HomeScreen'
-import Counts from './components/counts'
-import Distincts from './components/distincts'
-import Projections from './components/projections'
-import Aggregations from './components/aggregations'
-import IndexCount from './components/indexCount'
-const App = () => {
-  return (
-    <Router>
-      <main className='py-3'>
-        <Container>
-          <Route exact path='/' component={HomeScreen} />
-          <Route path='/counts' component={Counts} />
-          <Route path='/distincts' component={Distincts} />
-          <Route path='/projections' component={Projections} />
-          <Route path='/aggregations' component={Aggregations} />
-          <Route path='/indexCount' component={IndexCount} />
-        </Container>
-      </main>
-    </Router>
-  )
-}
+import React, { Component } from 'react';
+import './App.css';
+import axios from 'axios';
+import FilterOptions from './components/FilterOptions';
+import FilterItems from './components/FilterItems';
 
-export default App
+class App extends React.Component {
+
+    constructor(props) {
+      super(props)
+
+      this.state = {
+        data: [],
+        carMake: '',
+        model: '',
+        multiple: true
+      }
+    }
+
+    componentDidMount(){
+       axios.get('/api/cars')
+      .then(response => {
+        const data = response.data
+        this.setState({ data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    }
+
+  filterItems = (val, type) => {
+     switch (type) {
+      case 'carMake':
+        this.setState({carMake: val});
+        break;
+      case 'model':
+        this.setState({model: val});
+        break;
+      default:
+        break;
+    }
+  }
+
+  render () {
+
+    let filteredItems = this.state.data;
+    let state = this.state;
+    let filterProperties = ["carMake", "model"];
+
+    filterProperties.forEach(filterBy => {
+      let filterValue = state[filterBy];
+
+      if (filterValue) {
+        filteredItems = filteredItems.filter(item =>item[filterBy] === filterValue);
+      }
+    });
+
+    let carMakeArray = this.state.data.map(item => item.carMake );
+    let modelArray = this.state.data.map(item => item.model );
+
+    // In the drop-down add an extra empty row at the beginning.
+    carMakeArray.unshift("");
+    modelArray.unshift("");
+
+
+    return (
+      <div className="container">
+        <FilterOptions
+
+            data={this.state.data}
+            carMakeOptions={carMakeArray}
+            modelOptions={modelArray}
+            changeOptionProp={this.filterItems} />
+
+        <div className="filter-form">
+          <FilterItems key={filteredItems.name} data={filteredItems} />
+        </div>
+      </div>
+    )
+  }
+};
+
+export default App;
